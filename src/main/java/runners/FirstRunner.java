@@ -15,18 +15,23 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/main/java/features",//path to feature files
         glue = "steps",//package path
-        tags = "@TestYoutubePage",//list feature files for run
-        dryRun = false,
-        monochrome = true)
+        tags = "@TESTOR",//list feature files for run
+        dryRun = false
+//        monochrome = true,
+//        publish = true
+)
 
 public class FirstRunner {
     @BeforeClass
     public static void createDriver() {
-       BaseClass.driver= DriverConfig.create(BROWSERS.CHROMEINCOGNITO);
+        //CUCUMBER_PUBLISH_TOKEN=e4eea66f-07d3-47ca-a200-f12148ca38a3
+        System.setProperty("CUCUMBER_PUBLISH_TOKEN", "e4eea66f-07d3-47ca-a200-f12148ca38a3");
+        BaseClass.driver = DriverConfig.create(BROWSERS.CHROMEINCOGNITO);
 
     }
+
     @AfterClass
-    public static void after(){
+    public static void after() {
         try {
             Thread.sleep(10000);
         } catch (InterruptedException e) {
